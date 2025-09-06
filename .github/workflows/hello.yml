@@ -1,0 +1,35 @@
+name: Hello World
+
+# This workflow is triggered on push and pull request events
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# A workflow run is made up of one or more jobs
+jobs:
+  # This job runs on the latest Ubuntu runner
+  hello-world:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Say Hello World
+        run: echo "Hello World!"
+
+      # This step demonstrates how to use GitHub Actions with a custom action
+      - name: Hello World Action
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: "GitHub Actions"
+        id: hello
+
+      # This step shows how to use the output from a previous step
+      - name: Display the greeting
+        run: echo ${{ steps.hello.outputs.time }}
