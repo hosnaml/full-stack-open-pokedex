@@ -23,13 +23,10 @@ jobs:
       - name: Say Hello World
         run: echo "Hello World!"
 
-      # This step demonstrates how to use GitHub Actions with a custom action
-      - name: Hello World Action
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: "GitHub Actions"
-        id: hello
+      # Print current date
+      - name: Show current date
+        run: date
 
-      # This step shows how to use the output from a previous step
-      - name: Display the greeting
-        run: echo ${{ steps.hello.outputs.time }}
+      # Show directory contents in long format
+      - name: Show directory contents
+        run: ls -l
